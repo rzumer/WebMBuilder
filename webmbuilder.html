@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>WebM Builder</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<a onclick="alert('Complete the form on this page to generate an encoding script for ffmpeg in WebM VP8 format.\n\nAll files must be in the ffmpeg root directory.\n\nAll fields are optional.\n\n- When generating a script with no specified input file, drag and drop any file over the script to use it as input.\n- Rate control ignores file size, adjust accordingly.\n- Fontconfig (fonts.conf) is required for ASS subtitles.');">
+					<i class="pull-right glyphicon glyphicon-question-sign"></i>
+				</a>
+				<h1>WebM Builder</h1>
+			</div>
+			<!--<p>
+				<a href="#">WebM Encoder</a>
+			</p>-->
+			<form>
+				<table id="data" class="table table-bordered">
+					<tr><th style="font-weight:bold;">
+						Data
+					</th></tr>
+					<tr><td>
+						Input File: <input type="file" id="inputFile" />
+					</td></tr>
+				</table>
+				<table id="cutting" class="table table-bordered">
+					<tr><th colspan="4" style="font-weight:bold;">
+						Cutting
+					</th></tr>
+					<tr>
+						<th>Duration (end time has priority over duration)</th>
+						<td>
+							Start Time (hh:mm:ss[.ms]):<br /><input type="text" id="startTime" />
+						</td>
+						<td>
+							End Time (hh:mm:ss[.ms]):<br /><input type="text" id="endTime" />
+						</td>
+						<td>
+							Duration (s):<br /><input type="text" id="duration" />
+						</td>
+					</tr>
+					<tr>
+						<th>Size (leave one field empty to scale automatically)</th>
+						<td>
+							Width (px):<br /><input type="text" id="width" />
+						</td>
+						<td>
+							Height (px):<br /><input type="text" id="height" />
+						</td>
+					</tr>
+				</table>
+				<table id="advanced" class="table table-bordered">
+					<tr><th colspan="3" style="font-weight:bold;">
+						Advanced
+					</th></tr>
+					<tr>
+						<th>Rate Control (file size has priority over bitrate)</th>
+						<td>
+							Target File Size (kB - end time or duration required):<br /><input type="text" id="targetSize" />
+						</td>
+						<td>
+							Target Bitrate (kB/s):<br /><input type="text" id="targetBitrate" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Sound: <input type="checkbox" id="sound" checked />
+						</td>
+						<td>
+							Subtitles (third track only):
+							<select id="subtitles">
+								<option value="none">None</option>
+								<option value="srt">SRT</option>
+								<option value="ass">ASS</option>
+							</select>
+						</td>
+						<td>
+							Constant Bit Rate (increase rate control accuracy): <input type="checkbox" id="cbr" />
+						</td>
+					</tr>
+				</table>
+				<input id="generator" class="btn btn-primary pull-right" type="button" value="Generate Script" />
+			</form>
+		</div>
+		<script src="js/jquery-2.1.3.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="script.js"></script>
+</html>
